@@ -1,5 +1,5 @@
 # Sudoku 数独算法
-#### Solve sudoku with JavaScript
+#### [Solve sudoku with JavaScript](https://jarenchow.github.io/Sudoku/)
 ## 特性
 1. 纯原生 JavaScript 编写
 2. 若效率需求可移植到其他编程语言中

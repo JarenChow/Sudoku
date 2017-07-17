@@ -8,7 +8,7 @@
  *   subGridWidth: number, such as 3
  *   subGridHeight: number, such as 3 or 2
  * }
- * @returns {{complete: boolean, loopCount: number, eTime: number, numbers: Array, message: Array, readable: string}}
+ * @returns {{source: string, complete: boolean, loopCount: number, eTime: number, numbers: Array, message: Array, readable: string}}
  */
 function solveSudoku(sudoku) {
   "use strict";
@@ -79,6 +79,8 @@ function solveSudoku(sudoku) {
     if (value === 0) continue;
     updateState(index, value);
   }
+
+  var source = arrayToReadable(numbers);
 
   function nakedSingle() {                                                      // 唯一余数的解法
     for (var index = 0; index < length; index++) {
@@ -319,6 +321,7 @@ function solveSudoku(sudoku) {
   var eTime = new Date().getTime() - startTime;
 
   return {
+    source: source,
     complete: complete,
     loopCount: count,
     eTime: eTime,

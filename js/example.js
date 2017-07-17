@@ -51,13 +51,14 @@
   window.addEventListener("load", function () {
     for (var i = 0; i < sudokus.length; i++) {
       var result = solveSudoku(sudokus[i]);
-      dout("Sudoku", i + 1);
-      dout("是否完成(boolean)", result.complete);
-      dout("循环次数(number)", result.loopCount + " times");
-      dout("消耗时间(number)", result.eTime + " ms");
-      dout("结果数据(Array)", result.numbers);
-      dout("过程数据(Array)", result.message);
-      dout("可视化数据(string)", result.readable);
+      dout("计算 Sudoku", i + 1);
+      dout("原数独(Source)", result.source);
+      dout("是否完成(Complete)", result.complete);
+      dout("循环次数(LoopCount)", result.loopCount + " times");
+      dout("消耗时间(ElapsedTime)", result.eTime + " ms");
+      dout("结果数据(Numbers)", result.numbers);
+      dout("过程数据(Message)", result.message);
+      dout("可视化数据(Readable)", result.readable);
     }
   });
 
@@ -75,12 +76,12 @@
     var pre = document.createElement("pre");
     pre.style.fontSize = "24px";
     var preText = document.createTextNode(message + " = ");
-    var em = document.createElement("em");
+    var span = document.createElement("span");
     var emText = document.createTextNode(expectation);
-    em.style.color = "red";
-    em.appendChild(emText);
+    span.style.color = "red";
+    span.appendChild(emText);
     pre.appendChild(preText);
-    pre.appendChild(em);
+    pre.appendChild(span);
     log.appendChild(pre);
   }
 })();
