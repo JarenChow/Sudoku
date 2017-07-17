@@ -48,18 +48,23 @@
 
   var sudokus = [sudoku1, sudoku2, sudoku3, sudoku4, sudoku5];
 
+  var worker = new Worker("js/sudoku.js");
+
   window.addEventListener("load", function () {
-    for (var i = 0; i < sudokus.length; i++) {
-      var result = solveSudoku(sudokus[i]);
-      dout("计算 Sudoku", i + 1);
-      dout("原数独(Source)", result.source);
-      dout("是否完成(Complete)", result.complete);
-      dout("循环次数(LoopCount)", result.loopCount + " times");
-      dout("消耗时间(ElapsedTime)", result.eTime + " ms");
-      dout("结果数据(Numbers)", result.numbers);
-      dout("过程数据(Message)", result.message);
-      dout("可视化数据(Readable)", result.readable);
-    }
+    sudokus.forEach(function (sudoku) {
+      worker.postMessage(sudoku);
+    });
+  });
+
+  worker.addEventListener("message", function (event) {
+    var result = event.data;
+    dout("原数独(Source)", result.source);
+    dout("是否完成(Complete)", result.complete);
+    dout("循环次数(LoopCount)", result.loopCount + " times");
+    dout("消耗时间(ElapsedTime)", result.eTime + " ms");
+    dout("结果数据(Numbers)", result.numbers);
+    dout("过程数据(Message)", result.message);
+    dout("可视化数据(Readable)", result.readable);
   });
 
   function dout(message, expectation) {

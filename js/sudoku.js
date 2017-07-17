@@ -1,3 +1,6 @@
+self.addEventListener("message", function (event) {
+  self.postMessage(solveSudoku(event.data));
+});
 /**
  * 数独算法 (Sudoku Solution) created by JarenChow on 07/17/2017
  * @param {Object} sudoku
